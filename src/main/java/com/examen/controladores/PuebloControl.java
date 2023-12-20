@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pueblos")
+@RequestMapping("/pokemon")
 public class PuebloControl {
 
 	@Autowired
-    private final PuebloRepositorio puebloRepositorio;
+    PuebloRepositorio puebloRepositorio;
 
     @GetMapping
     public ResponseEntity<List<Pueblo>> obtenerTodosLosPueblos() {

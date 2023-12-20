@@ -1,5 +1,6 @@
 package com.examen.controladores;
 
+import com.examen.dto.PokemonDTO;
 import com.examen.entidades.Pokemon;
 import com.examen.repositorios.PokemonRepositorio;
 import com.examen.servicios.PokemonServicio;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pokemones")
+@RequestMapping("/pokemon")
 public class PokemonControl {
 
 	@Autowired
@@ -41,6 +42,19 @@ public class PokemonControl {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @PostMapping("/registrar")
+    public ResponseEntity<Pokemon> registrarPokemon(@RequestBody PokemonDTO request) {
+        Pokemon nuevoPokemon = new Pokemon();
+        nuevoPokemon.setNombre(request.getNombre());
+        nuevoPokemon.setDescripcion(request.getDescripcion());
+        nuevoPokemon.setTipo_Pokemon(request.getTipoPokemon());
+        nuevoPokemon.setFecha_Descubrimineto(request.getFechaDescubrimiento());
+        nuevoPokemon.setGeneracion(request.getGeneracion());
+
+        Pokemon pokemonGuardado = pokemonRepositorio.save(nuevoPokemon);
+        return new ResponseEntity<>(pokemonGuardado, HttpStatus.CREATED);
     }
 
     @PostMapping

@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/tipos_pokemon")
+@RequestMapping("/pokemon")
 public class Tipo_pokemonControl {
 
 	@Autowired
-    private final Tipo_pokemonRepositorio tipo_pokemonRepositorio;
+    Tipo_pokemonRepositorio tipo_pokemonRepositorio;
 
     @GetMapping
     public ResponseEntity<List<Tipo_pokemon>> obtenerTodosLosTiposPokemon() {
